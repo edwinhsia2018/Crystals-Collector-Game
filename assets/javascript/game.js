@@ -13,6 +13,7 @@ $(document).ready(function() {
     var diamond = parseInt(randomDiamond);
     var sapphire = parseInt(randomSapphire);
     var emerald = parseInt(randomEmerald);
+    var target = parseInt(targetScore);
 
     //Random target number generator
     function resetNum (){
@@ -25,86 +26,53 @@ $(document).ready(function() {
         var sapphire = parseInt(randomSapphire);
         var emerald = parseInt(randomEmerald);
     }
+
     $("#target-number").text(targetScore);
     $("#your-score").text("Your score: " + yourScore);
 
     $("#ruby-button").on("click",function() {
         yourScore=ruby+yourScore;
         $("#your-score").text("Your score: " + yourScore);
-            //Conditions for winning/losing
-        if (yourScore == targetScore) {
-            wins++;
-            $("#wins").text(wins);
-            resetNum();
-            yourScore = 0;
-            var targetScore = [Math.floor(Math.random()*102)+19];
-        }
-        if (yourScore > targetScore) {
-            losses++;
-            $("#losses").text(losses);
-            resetNum();
-            yourScore = 0;
-            var targetScore = [Math.floor(Math.random()*102)+19];
-        }
+        checkScore ();
     })
     $("#diamond-button").on("click",function() {
         yourScore=diamond+yourScore;
         $("#your-score").text("Your score: " + yourScore);
-            //Conditions for winning/losing
-        if (yourScore == targetScore) {
-            wins++;
-            $("#wins").text(wins);
-            resetNum();
-            yourScore = 0;
-            var targetScore = [Math.floor(Math.random()*102)+19];
-        }
-        if (yourScore > targetScore) {
-            losses++;
-            $("#losses").text(losses);
-            resetNum();
-            yourScore = 0;
-            var targetScore = [Math.floor(Math.random()*102)+19];
-        }
+        checkScore ();
     })
     $("#sapphire-button").on("click",function() {
         yourScore=sapphire+yourScore;
         $("#your-score").text("Your score: " + yourScore);
-            //Conditions for winning/losing
-        if (yourScore == targetScore) {
-            wins++;
-            $("#wins").text(wins);
-            resetNum();
-            yourScore = 0;
-            var targetScore = [Math.floor(Math.random()*102)+19];
-        }
-        if (yourScore > targetScore) {
-            losses++;
-            $("#losses").text(losses);
-            resetNum();
-            yourScore = 0;
-            var targetScore = [Math.floor(Math.random()*102)+19];
-        }
+        checkScore ();
     })
     $("#emerald-button").on("click",function() {
         yourScore=emerald+yourScore;
         $("#your-score").text("Your score: " + yourScore);
-            //Conditions for winning/losing
-        if (yourScore == targetScore) {
-            wins++;
-            $("#wins").text(wins);
-            resetNum();
-            yourScore = 0;
-            var targetScore = [Math.floor(Math.random()*102)+19];
-        }
-        if (yourScore > targetScore) {
-            losses++;
-            $("#losses").text(losses);
-            resetNum();
-            yourScore = 0;
-            var targetScore = [Math.floor(Math.random()*102)+19];
-        }
+        checkScore();
     })
 
+    //Conditions for winning/losing
+    function checkScore(){
+        if (yourScore == target) {
+            wins++;
+            alert("Congrats!  You Win!");
+            $("#wins").text("Wins: " + wins);
+            resetNum();
+            yourScore = 0;
+            $("#your-score").text("Your score: " + yourScore);
+            var targetScore = [Math.floor(Math.random()*102)+19];
+        }
+        else if (yourScore > target) {
+            losses++;
+            alert("You lose!  Try again!");
+            $("#losses").text("Losses: " + losses);
+            resetNum();
+            yourScore = 0;
+            $("#your-score").text("Your score: " + yourScore);
+            var targetScore = [Math.floor(Math.random()*102)+19];
+        }
+    }
+    checkScore ();
     resetNum ();
 
     $("#wins").text("Wins: " + wins);
