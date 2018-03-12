@@ -4,28 +4,20 @@ $(document).ready(function() {
     var wins=0;
     var losses=0;
     var yourScore=0;
-    var targetScore = [Math.floor(Math.random()*102)+19];
-    var randomRuby = [Math.ceil(Math.random() * 12)];
-    var randomDiamond = [Math.ceil(Math.random() * 12)];
-    var randomSapphire = [Math.ceil(Math.random() * 12)];
-    var randomEmerald = [Math.ceil(Math.random() * 12)];
-    var ruby = parseInt(randomRuby);
-    var diamond = parseInt(randomDiamond);
-    var sapphire = parseInt(randomSapphire);
-    var emerald = parseInt(randomEmerald);
-    var target = parseInt(targetScore);
-
-    //Random target number generator
-    function resetNum (){
+    gameStart();
+    //Random number generator
+    function gameStart (){
         var randomRuby = [Math.ceil(Math.random() * 12)];
         var randomDiamond = [Math.ceil(Math.random() * 12)];
         var randomSapphire = [Math.ceil(Math.random() * 12)];
         var randomEmerald = [Math.ceil(Math.random() * 12)];
+        var targetScore = [Math.floor(Math.random()*102)+19];
         var ruby = parseInt(randomRuby);
         var diamond = parseInt(randomDiamond);
         var sapphire = parseInt(randomSapphire);
         var emerald = parseInt(randomEmerald);
-    }
+        var target = parseInt(targetScore);
+    
 
     $("#target-number").text(targetScore);
     $("#your-score").text("Your score: " + yourScore);
@@ -57,24 +49,22 @@ $(document).ready(function() {
             wins++;
             alert("Congrats!  You Win!");
             $("#wins").text("Wins: " + wins);
-            resetNum();
+            gameStart();
             yourScore = 0;
             $("#your-score").text("Your score: " + yourScore);
-            var targetScore = [Math.floor(Math.random()*102)+19];
         }
         else if (yourScore > target) {
             losses++;
             alert("You lose!  Try again!");
             $("#losses").text("Losses: " + losses);
-            resetNum();
+            gameStart();
             yourScore = 0;
             $("#your-score").text("Your score: " + yourScore);
-            var targetScore = [Math.floor(Math.random()*102)+19];
+          
         }
     }
-    checkScore ();
-    resetNum ();
-
+    $("#target-number").text(targetScore);
     $("#wins").text("Wins: " + wins);
     $("#losses").text("Losses: " + losses);
+    }
   });
